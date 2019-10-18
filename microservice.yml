@@ -27,7 +27,10 @@ actions:
         in: requestBody
         required: true
     output:
-      type: none
+      type: object
+      properties:
+        status:
+          type: string
   rpush:
     <<: *key_value_required
     http:
@@ -46,42 +49,70 @@ actions:
       key:
         <<: *key
     output:
-      type: any
+      type: object
+      properties:
+        result:
+          type: any
+        status:
+          type: string
   rpop:
     <<: *key_required
     http:
       <<: *http
       path: /rpop
     output:
-      type: any
+      type: object
+      properties:
+        result:
+          type: any
+        status:
+          type: string
   blpop:
     <<: *key_required
     http:
       <<: *http
       path: /blpop
     output:
-      type: any
+      type: object
+      properties:
+        result:
+          type: any
+        status:
+          type: string
   brpop:
     <<: *key_required
     http:
       <<: *http
       path: /brpop
     output:
-      type: any
+      type: object
+      properties:
+        result:
+          type: any
+        status:
+          type: string
   del:
     <<: *key_required
     http:
       <<: *http
       path: /del
     output:
-      type: none
+      type: object
+      properties:
+        status:
+          type: string
   get:
     <<: *key_required
     http:
       <<: *http
       path: /get
     output:
-      type: any
+      type: object
+      properties:
+        result:
+          type: any
+        status:
+          type: string
   expire:
     http:
       <<: *http
@@ -94,7 +125,10 @@ actions:
         type: int
         required: true
     output:
-      type: none
+      type: object
+      properties:
+        status:
+          type: string
   listener:
     events:
       rpop:
@@ -114,7 +148,12 @@ actions:
             in: requestBody
             help: The key to RPOP
         output:
-          type: any
+          type: object
+          properties:
+            result:
+              type: any
+            status:
+              type: string
       lpop:
         help: LPOP a key constantly, and emit the values as events
         http:
@@ -126,7 +165,12 @@ actions:
             in: requestBody
             help: The key to LPOP
         output:
-          type: any
+          type: object
+          properties:
+            result:
+              type: any
+            status:
+              type: string
 
 environment:
   REDIS_HOST:

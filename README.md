@@ -9,13 +9,13 @@ This container should be used for connecting to a hosted Redis server. It does n
 #### Redis Example
 ```coffee
 # Storyscript
-value = redis set key: "hello" value: "world"
-value = redis get key: "hello"
-value = redis del key: "hello"
-value = redis lpush key: "hello" value: "world1"
-value = redis rpush key: "hello" value: "world2"
-value = redis lpop key: "hello"
-value = redis rpop key: "hello"
+redis set key: "hello" value: "world"
+redis del key: "hello"
+redis lpush key: "hello" value: "world1"
+redis rpush key: "hello" value: "world2"
+value = (redis get key: "hello").result
+value = (redis lpop key: "hello").result
+value = (redis rpop key: "hello").result
 
 # Streaming example
 redis listener as rds
